@@ -1,0 +1,1 @@
+webpackJsonp([4],{151:function(){'use strict';Component({properties:{avatarUrl:{type:String,value:'none'},nickName:{type:String,value:'-'}}})}},[151]);function webpackJsonp(){require('./../../common.js'),wx.webpackJsonp.apply(null,arguments)}

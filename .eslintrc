@@ -1,5 +1,5 @@
 {
-  "extends": ["cantonjs"],
+//  "extends": ["cantonjs"],
   "globals": {
     "__DEV__": true,
     "__WECHAT__": true,

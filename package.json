@@ -5,16 +5,12 @@
 	"private": true,
 	"scripts": {
 		"start": "webpack --watch",
-		"start:alipay": "webpack --watch --env.target=Alipay",
 		"webpack": "webpack",
 		"deprecate:watch": "echo \"'watch' is deprecated, please use 'start' instead\"",
 		"watch": "run-s deprecate:watch start",
-		"watch:alipay": "run-s deprecate:watch start:alipay",
 		"prestart": "rimraf dist",
-		"prebuild": "rimraf dist",
-		"build:wechat": "cross-env NODE_ENV=production webpack --env.target=Wechat --env.min",
-		"build:alipay": "cross-env NODE_ENV=production webpack --env.target=Alipay --env.min",
-		"build": "run-s build:*",
+		"prebuild": "rimraf release",
+		"build": "cross-env NODE_ENV=production webpack --env.min",
 		"lint:watch": "cross-env LINT=true run-s start",
 		"lint:build": "cross-env LINT=true run-s build",
 		"prettier": "prettier-eslint --write \"+(src|test)/**/*.js\"",
@@ -22,7 +18,7 @@
 		"create-component": "create-wxapp-page --type=component --dir=src --indent=tab --style=scss",
 		"test": "jest"
 	},
-	"main": "dist/wechat/app.js",
+	"main": "dist/app.js",
 	"author": "cap32",
 	"license": "MIT",
 	"engines": {
