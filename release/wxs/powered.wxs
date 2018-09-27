@@ -1,4 +1,0 @@
-'use strict';
-
-var name = 'webpack';
-module.exports.by = 'Powered by ' + name;
