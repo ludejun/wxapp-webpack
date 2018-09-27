@@ -1,4 +1,4 @@
-import { connect } from 'vedux';
+import { connect } from '@wmfe/vedux';
 import { storeUserInfo } from '../../actions/user';
 import { fetchAPI } from '../../actions/home';
 

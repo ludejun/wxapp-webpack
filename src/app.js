@@ -1,5 +1,5 @@
 import { camelCase } from 'lodash';
-import { Provider } from './wedux';
+import { Provider } from '@wmfe/vedux';
 import store from './store';
 
 const config = Provider(store)({
