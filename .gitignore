@@ -10,3 +10,7 @@ Thumbs.db
 node_modules
 dist
 lib
+*.zip
+package-lock.json
+yarn.lock
+release

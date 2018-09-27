@@ -3,9 +3,10 @@
 <wxs src="../../wxs/powered.wxs" module="powered" />
 
 <view class="container">
-  <view bindtap="bindViewTap">
+  <view bindtap="onViewTap">
     <user avatarUrl="{{userInfo.avatarUrl}}" nickName="{{userInfo.nickName}}"></user>
   </view>
+  <button type="default" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGetUserInfo">获取用户信息</button>
   <view class="motto">
     <template is="motto" data="{{motto:motto}}" />
   </view>

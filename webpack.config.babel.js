@@ -130,7 +130,7 @@ export default (env = {}) => {
 			min && new MinifyPlugin(),
 			new CopyPlugin(copyPatterns, { context: srcDir }),
 		].filter(Boolean),
-		devtool: isDev ? 'source-map' : false,
+		devtool: isDev ? 'inline-source-map' : false,
 		resolve: {
 			modules: [resolve(__dirname, 'src'), 'node_modules'],
 		},

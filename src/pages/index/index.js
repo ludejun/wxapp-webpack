@@ -1,36 +1,40 @@
-import { flow } from 'lodash';
+import { connect } from 'vedux';
+import { storeUserInfo } from '../../actions/user';
+import { fetchAPI } from '../../actions/home';
 
-const delay = (t = 0) => new Promise((resolve) => setTimeout(resolve, t));
-
-// 获取应用实例
-const app = getApp(); //  eslint-disable-line no-undef
-
-Page({
+const pageConfig = {
 	data: {
 		motto: 'Hello World!',
 		userInfo: {},
 	},
 	// 事件处理函数
-	bindViewTap() {
+	onViewTap() {
 		wx.navigateTo({
 			url: '../logs/logs',
 		});
 	},
-	async onLoad() {
-		await delay();
+	onGetUserInfo(e) {
+		this.storeUserInfo(e.detail.userInfo);
+	},
+	onLoad() {
+		console.log('DEV: ', __DEV__);
+		this.fetchAPI({motto: 'Hello Wedux!'})
+	},
+};
 
-		const log = flow(() => {
-			console.log('is wechat mini program: ', __WECHAT__);
-			console.log('is alipay mini program: ', __ALIPAY__);
-			console.log('DEV: ', __DEV__);
-		});
-
-		log();
-
-		// 调用应用实例的方法获取全局数据
-		app.getUserInfo((userInfo) => {
-			// 更新数据
-			this.setData({ userInfo });
-		});
+const mapStateToData = ({user, home}) => {
+	return {
+		userInfo: user.userInfo,
+		motto: home.motto,
+	};
+};
+const mapDispatchToPage = dispatch => ({
+	storeUserInfo: userInfo => {
+		dispatch(storeUserInfo(userInfo));
+	},
+	fetchAPI: payload => {
+		dispatch(fetchAPI(payload))
 	},
 });
+
+Page(connect(mapStateToData, mapDispatchToPage)(pageConfig));

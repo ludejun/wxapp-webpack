@@ -1,0 +1,18 @@
+import { types } from '../actions/home';
+
+const initialState = {
+	motto: null,
+};
+
+export default function user(state = initialState, action = {}) {
+	switch (action.type) {
+		case types.HOME_FETCH_API:
+			return {
+				...state,
+				motto: action.payload.motto,
+			};
+
+		default:
+			return state;
+	}
+}
