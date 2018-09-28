@@ -16,4 +16,4 @@ const store = createStore(
 // 	})
 );
 
-module.exports = store;
+export default store;

@@ -1,4 +1,4 @@
-import { connect } from '@wmfe/vedux';
+const { connect } = require('@wmfe/vedux');
 import { storeUserInfo } from '../../actions/user';
 import { fetchAPI } from '../../actions/home';
 
