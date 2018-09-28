@@ -9,7 +9,7 @@ const fetch = (data, t = 0) => new Promise((resolve) => {
 export function fetchAPI(payload) {
 	return dispatch => {
 
-		return fetch(payload, 100).then(
+		return fetch(payload, 1500).then(
 			data => {
 				dispatch({
 					type: types.HOME_FETCH_API,

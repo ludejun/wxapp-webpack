@@ -18,7 +18,7 @@ const pageConfig = {
 	},
 	onLoad() {
 		console.log('DEV: ', __DEV__);
-		this.fetchAPI({motto: 'Hello Wedux!'})
+		this.fetchAPI({motto: 'Hello Vedux!'})
 	},
 };
 
