@@ -1,7 +1,7 @@
 import { types } from '../actions/home';
 
 const initialState = {
-	motto: null,
+	motto: 'Hello World!',
 };
 
 export default function user(state = initialState, action = {}) {

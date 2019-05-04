@@ -5,7 +5,6 @@ import {
 	IgnorePlugin,
 	optimize,
 } from 'webpack';
-// import WXAppWebpackPlugin, { Targets } from 'wxapp-webpack-plugin';
 import WXAppWebpackPlugin from 'wxapp-webpack-plugin';
 import StylelintPlugin from 'stylelint-webpack-plugin';
 import MinifyPlugin from 'babel-minify-webpack-plugin';
@@ -26,9 +25,6 @@ const copyPatterns = []
 
 export default (env = {}) => {
 	const min = env.min;
-// 	const target = env.target || 'Wechat';
-// 	const isWechat = env.target !== 'Alipay';
-// 	const isAlipay = !isWechat;
 
 	const relativeFileLoader = (ext = '[ext]') => {
 		// const namePrefix = isWechat ? '' : '[path]';
@@ -116,10 +112,6 @@ export default (env = {}) => {
 			}),
 			new DefinePlugin({
 				__DEV__: isDev,
-				// __WECHAT__: isWechat,
-				// __ALIPAY__: isAlipay,
-				// wx: isWechat ? 'wx' : 'my',
-				// my: isWechat ? 'wx' : 'my',
 			}),
 			new WXAppWebpackPlugin({
 				clear: !isDev,
