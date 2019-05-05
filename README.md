@@ -2,17 +2,40 @@
 
 使用 `webpack`, `scss`, `vedux`(redux), `redux-thunk` 开发的微信小程序项目脚手架
 
+实际使用中，最好去除lodash，减少包体积
+
 ## 功能
 
 * 支持引用 `node_modules` 模块
 * 合成vedux库，使用类redux开发方式开发小程序
 * 异步action支持redux-thunk开发，也可以视实际情况删除
+* 合成BundleAnalyzerPlugin，实时分析包体积，为包体积提供可视化优化方向
 * 支持通过配置 `alias` 来避免 `../../../` 之类的模块引用
 * 通过 `babel` 支持更丰富的 `ES6` 兼容，包括 `async/await`
 * 使用 `scss` 编写 `.wxss` 文件，内置了一些有用的 `mixins` 和 `extends`
 * 提供 `__DEV__` 和 `process.env.NODE_ENV` 全局常量辅助开发
 * 通过命令行快速创建微信小程序页面
 * 支持在 `production` 环境下压缩代码
+
+## vedux
+
+wxapp-redux 微信小程序和redux绑定库，类react-redux
+
+### 简介
+
+在[**wechat-weapp-redux**](https://github.com/charleyw/wechat-weapp-redux)的基础上改进，控制setdata次数与渲染次数，在页面的交互、加载、跳转时setdata次数减少50-80%，渲染时间减少约50%。
+
+有如下功能特性：
+
+- Redux store变化时禁止后台页面setdata，后台页面的setdata汇总到此页面onload时进行；
+- 优化stateDiff算法；
+- 过滤与当前页面无关的变更；
+- 内部对action触发做节流处理，允许不节流，默认节流；
+- 支持给action传入callback，在action触发后执行；
+- connect的传参mapStateToData，支持传入options（即onLoad的options）；
+- connect新增参数mergeProps（对mapStateToData的返回结果做进一步处理）；
+- connect新增参数extraOptions（给mergeProps方法传参）；
+
 
 
 ## 开始使用

@@ -9,6 +9,7 @@ import WXAppWebpackPlugin from 'wxapp-webpack-plugin';
 import StylelintPlugin from 'stylelint-webpack-plugin';
 import MinifyPlugin from 'babel-minify-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import pkg from './package.json';
 
 const { NODE_ENV, LINT } = process.env;
@@ -121,6 +122,7 @@ export default (env = {}) => {
 			shouldLint && new StylelintPlugin(),
 			min && new MinifyPlugin(),
 			new CopyPlugin(copyPatterns, { context: srcDir }),
+			new BundleAnalyzerPlugin({analyzerPort: 7001})
 		].filter(Boolean),
 		devtool: isDev ? 'inline-source-map' : false,
 		resolve: {
