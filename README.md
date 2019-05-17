@@ -1,8 +1,8 @@
 # wxapp-vedux-webpack
 
-使用 `webpack`, `scss`, `vedux`(redux), `redux-thunk` 开发的微信小程序项目脚手架
+使用 `webpack`, `scss`, `redux`, `vedux`(redux绑定库), `redux-thunk` 开发的微信小程序项目脚手架
 
-实际使用中，最好去除lodash，减少包体积
+实际使用中，最好去除lodash，减少包体积，可参考BundleAnalyzerPlugin分析结果
 
 ## 功能
 

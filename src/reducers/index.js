@@ -3,16 +3,16 @@ import user from './user';
 import home from './home';
 
 const reducer = combineReducers({
-	user,
-	home,
+  user,
+  home,
 });
 
 if (process.env.NODE_ENV === 'production') {
-	module.exports = reducer;
+  module.exports = reducer;
 } else {
-	module.exports = (state, action) => {
-		const nextState = reducer(state, action);
-		// console.log(action.type, action);
-		return nextState;
-	};
+  module.exports = (state, action) => {
+    const nextState = reducer(state, action);
+    // console.log(action.type, action);
+    return nextState;
+  };
 }

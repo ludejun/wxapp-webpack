@@ -11,16 +11,16 @@ beforeEach(clear);
 afterEach(clear);
 
 test('development', () => {
-	console.log(execSync('yarn webpack').toString());
-	expect(exist('app.js')).toBe(true);
-	expect(exist('app.json')).toBe(true);
-	expect(exist('app.wxss')).toBe(true);
-	expect(exist('common.js')).toBe(true);
-	expect(exist('wxml/motto/motto.wxml')).toBe(true);
-	expect(exist('pages/index/index.js')).toBe(true);
-	expect(exist('pages/index/index.wxml')).toBe(true);
-	expect(exist('pages/index/index.wxss')).toBe(true);
-	expect(exist('pages/logs/logs.js')).toBe(true);
-	expect(exist('pages/logs/logs.wxml')).toBe(true);
-	expect(exist('pages/logs/logs.wxss')).toBe(true);
+  console.log(execSync('yarn webpack').toString());
+  expect(exist('app.js')).toBe(true);
+  expect(exist('app.json')).toBe(true);
+  expect(exist('app.wxss')).toBe(true);
+  expect(exist('common.js')).toBe(true);
+  expect(exist('wxml/motto/motto.wxml')).toBe(true);
+  expect(exist('pages/index/index.js')).toBe(true);
+  expect(exist('pages/index/index.wxml')).toBe(true);
+  expect(exist('pages/index/index.wxss')).toBe(true);
+  expect(exist('pages/logs/logs.js')).toBe(true);
+  expect(exist('pages/logs/logs.wxml')).toBe(true);
+  expect(exist('pages/logs/logs.wxss')).toBe(true);
 });

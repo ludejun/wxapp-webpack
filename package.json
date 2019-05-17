@@ -1,6 +1,6 @@
 {
   "name": "wxapp-webpack-wedux",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "mini program dev boilerplate, supports wechat and alipay",
   "private": true,
   "scripts": {
@@ -13,13 +13,16 @@
     "build": "cross-env NODE_ENV=production webpack --env.min",
     "lint:watch": "cross-env LINT=true run-s start",
     "lint:build": "cross-env LINT=true run-s build",
-    "prettier": "prettier-eslint --write \"+(src|test)/**/*.js\"",
+    "lint": "eslint src",
+    "prettier": "prettier-eslint --single-quote --trailing-comma es5 --write \"+(src|test)/**/*.js\"",
     "create-page": "create-wxapp-page --type=page --dir=src --indent=tab --style=scss",
     "create-component": "create-wxapp-page --type=component --dir=src --indent=tab --style=scss",
-    "test": "jest"
+    "test": "jest",
+    "format": "npm run prettier && npm run lint -- --fix",
+    "precommit": "npm run format"
   },
   "main": "dist/app.js",
-  "author": "cap32",
+  "author": "ludejun@live.cn",
   "license": "MIT",
   "engines": {
     "node": ">=4"
@@ -49,6 +52,7 @@
     "eslint-plugin-standard": "^3.1.0",
     "file-loader": "1.1.11",
     "glob": "^7.1.2",
+    "husky": "^2.3.0",
     "jest": "21.x",
     "node-sass": "^4.9.3",
     "npm-run-all": "^4.1.1",
@@ -65,12 +69,12 @@
     "wxml-loader": "^0.2.2"
   },
   "dependencies": {
-    "@wmfe/vedux": "0.0.15",
     "babel-runtime": "^6.23.0",
     "es6-promise": "^4.1.0",
     "lodash": "^4.17.4",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "vedux": "^0.1.2"
   },
   "jest": {
     "modulePathIgnorePatterns": [
@@ -83,7 +87,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "N"
+    "url": "https://github.com/ludejun/wxapp-webpack"
   },
   "keywords": [
     "wxapp",
