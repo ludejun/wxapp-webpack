@@ -4,6 +4,9 @@
 
 实际使用中，最好去除lodash，减少包体积，可参考BundleAnalyzerPlugin分析结果
 
+动态图片打包问题：
+wxml-loader并不能解析动态图片url引入，需要借助copy-webpack-plugin将图片直接copy打包，url配置在package.json的copyWebpack字段中
+
 ## 功能
 
 * 支持引用 `node_modules` 模块

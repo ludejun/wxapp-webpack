@@ -94,5 +94,7 @@
     "webpack",
     "redux",
     "vedux"
+  ],
+  "copyWebpack": [
   ]
 }
