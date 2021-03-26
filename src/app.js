@@ -1,10 +1,9 @@
-import { camelCase } from 'lodash';
 import { Provider } from 'vedux';
 import store from './store';
 
 const config = Provider(store)({
   onLaunch() {
-    console.log(camelCase('OnLaunch'));
+    console.log('OnLaunch');
 
     // 调用API从本地缓存中获取数据
     const logs = wx.getStorageSync('logs') || [];

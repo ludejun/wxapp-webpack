@@ -2,10 +2,14 @@
 
 使用 `webpack`, `scss`, `redux`, `vedux`(redux绑定库), `redux-thunk` 开发的微信小程序项目脚手架
 
-实际使用中，最好去除lodash，减少包体积，可参考BundleAnalyzerPlugin分析结果
+实际使用中，最好去除lodash（新仓库已去除），减少包体积，可参考BundleAnalyzerPlugin分析结果
 
 动态图片打包问题：
 wxml-loader并不能解析动态图片url引入，需要借助copy-webpack-plugin将图片直接copy打包，url配置在package.json的copyWebpack字段中
+
+
+
+要使用云开发能力，可参考本人另一个demo：[**miniprogram-thirty**](https://github.com/ludejun/miniprogram-thirty)
 
 ## 功能
 
@@ -20,9 +24,11 @@ wxml-loader并不能解析动态图片url引入，需要借助copy-webpack-plugi
 * 通过命令行快速创建微信小程序页面
 * 支持在 `production` 环境下压缩代码
 
-## vedux
 
-wxapp-redux 微信小程序和redux绑定库，类react-redux
+
+## [vedux](https://github.com/ludejun/vedux)
+
+wxapp-redux 微信小程序和redux绑定库，类react-redux。同npm包名。
 
 ### 简介
 
@@ -48,7 +54,7 @@ wxapp-redux 微信小程序和redux绑定库，类react-redux
 1.  `git clone` 此项目
 2.  通过命令行工具 `cd` 到这个目录，执行 `yarn` 安装依赖模块
 3.  执行 `yarn start` 开始开发
-4.  通过微信开发者工具，添加 `dist` 目录到项目上
+4.  通过微信开发者工具，添加 `dist` （开发环境）目录到项目上，生产环境为release文件夹；如项目复杂度不高，可以改为一个，修改webpack配置output即可
 
 ## 内置命令
 
