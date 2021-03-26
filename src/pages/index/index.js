@@ -37,9 +37,4 @@ const mapDispatchToPage = dispatch => ({
   },
 });
 
-Page(
-  connect(
-    mapStateToData,
-    mapDispatchToPage
-  )(pageConfig)
-);
+Page(connect(mapStateToData, mapDispatchToPage)(pageConfig));

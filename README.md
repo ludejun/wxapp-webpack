@@ -28,7 +28,7 @@ wxml-loader并不能解析动态图片url引入，需要借助copy-webpack-plugi
 
 ## [vedux](https://github.com/ludejun/vedux)
 
-wxapp-redux 微信小程序和redux绑定库，类react-redux。同npm包名。
+wxapp-redux 微信小程序和redux绑定库，类react-redux。同npm包名，关于这个连接库详细设计和API请参考上面链接。
 
 ### 简介
 
