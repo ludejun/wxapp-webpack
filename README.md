@@ -1,22 +1,46 @@
-# wxapp-vedux-webpack
+<h1 align="center">wxapp-webpack-wedux</h1>
 
-使用 `webpack`, `scss`, `redux`, `vedux`(redux绑定库), `redux-thunk` 开发的微信小程序项目脚手架
+<p align="center">
+  微信小程序项目脚手架 —— <code>webpack</code> + <code>scss</code> + <code>redux</code> +
+  <a href="https://github.com/ludejun/vedux">vedux</a>（redux 绑定库）+ <code>redux-thunk</code>。
+</p>
 
-实际使用中，最好去除lodash（新仓库已去除），减少包体积，可参考BundleAnalyzerPlugin分析结果
+<p align="center">
+  <img src="https://img.shields.io/badge/webpack-3-8dd6f9?logo=webpack&logoColor=black" alt="webpack 3" />
+  <img src="https://img.shields.io/badge/redux-4-764abc?logo=redux&logoColor=white" alt="redux 4" />
+  <img src="https://img.shields.io/badge/sass-dart--sass-cc6699?logo=sass&logoColor=white" alt="dart sass" />
+  <img src="https://img.shields.io/badge/platform-微信小程序-07c160?logo=wechat&logoColor=white" alt="微信小程序" />
+  <a href="https://github.com/ludejun/wxapp-webpack/blob/master/LICENSE"><img src="https://img.shields.io/github/license/ludejun/wxapp-webpack?color=blue" alt="开源协议" /></a>
+</p>
 
-动态图片打包问题：
-wxml-loader并不能解析动态图片url引入，需要借助copy-webpack-plugin将图片直接copy打包，url配置在package.json的copyWebpack字段中
+<p align="center">
+  <a href="./CHANGELOG.md">更新日志</a>
+  ·
+  <a href="./README_EN.md">English</a>
+</p>
 
+---
 
+> [!IMPORTANT]
+> **本项目停留在 webpack 3，且不会再升级。**
+>
+> 脚手架的核心 [`wxapp-webpack-plugin`](https://www.npmjs.com/package/wxapp-webpack-plugin) 最后一版（0.19.0，2022 年）的 peer 依赖仍是 `webpack ^2 || ^3`，没有 webpack 4/5 的后续版本。换掉它等于重写整套打包逻辑，已经不属于维护范畴。
+>
+> 项目本身**可以正常构建和使用**（2026 年在 Node 22 上验证过），适合作为参考或小型项目的起点。新项目建议直接用 [Taro](https://taro.jd.com/)、[uni-app](https://uniapp.dcloud.net.cn/)，或微信官方开发者工具内置的 npm 支持。
 
-要使用云开发能力，可参考本人另一个demo：[**miniprogram-thirty**](https://github.com/ludejun/miniprogram-thirty)
+使用 `webpack`、`scss`、`redux`、`vedux`（redux 绑定库）、`redux-thunk` 开发的微信小程序项目脚手架。
 
+实际使用中，最好去除 lodash（新仓库已去除）以减少包体积，可参考 `pnpm analyze` 的分析结果。
+
+**动态图片打包问题**：`wxml-loader` 并不能解析动态图片 url 引入，需要借助 `copy-webpack-plugin` 将图片直接 copy 打包，url 配置在 `package.json` 的 `copyWebpack` 字段中。
+
+要使用云开发能力，可参考另一个 demo：[**miniprogram-thirty**](https://github.com/ludejun/miniprogram-thirty)。
 ## 功能
 
 * 支持引用 `node_modules` 模块
 * 合成vedux库，使用类redux开发方式开发小程序
 * 异步action支持redux-thunk开发，也可以视实际情况删除
-* 合成BundleAnalyzerPlugin，实时分析包体积，为包体积提供可视化优化方向
+* 集成 BundleAnalyzerPlugin 分析包体积（按需开启：`pnpm analyze`）
 * 支持通过配置 `alias` 来避免 `../../../` 之类的模块引用
 * 通过 `babel` 支持更丰富的 `ES6` 兼容，包括 `async/await`
 * 使用 `scss` 编写 `.wxss` 文件，内置了一些有用的 `mixins` 和 `extends`
@@ -49,20 +73,22 @@ wxapp-redux 微信小程序和redux绑定库，类react-redux。同npm包名，�
 
 ## 开始使用
 
-确保安装了 [Node.js](https://nodejs.org/) (>= `v4.2`) 和 [yarn](https://yarnpkg.com) 或 [npm](https://www.npmjs.com/package/npm)
+确保安装了 [Node.js](https://nodejs.org/)（>= 18）和 [pnpm](https://pnpm.io/)。
 
 1.  `git clone` 此项目
-2.  通过命令行工具 `cd` 到这个目录，执行 `yarn` 安装依赖模块
-3.  执行 `yarn start` 开始开发
-4.  通过微信开发者工具，添加 `dist` （开发环境）目录到项目上，生产环境为release文件夹；如项目复杂度不高，可以改为一个，修改webpack配置output即可
+2.  `cd` 到这个目录，执行 `pnpm install` 安装依赖
+3.  执行 `pnpm start` 开始开发
+4.  通过微信开发者工具，添加 `dist`（开发环境）目录到项目上，生产环境为 `release` 文件夹；如项目复杂度不高，可以改为一个，修改 webpack 配置的 `output` 即可
 
 ## 内置命令
 
-* `yarn start` 启动 `webpack` 开发微信小程序项目，能监听文件变化自动重新编译
-* `yarn build` 编译生成 `production` 环境的代码到 `release` 文件夹
-* `yarn lint:build` 执行 `yarn build` 命令，并使用 eslint 和 stylelint 来校验代码规范
-* `yarn prettier` 执行 `prettier` 来格式化 src 目录下的代码
-* `yarn create-page` 快速创建微信小程序页面（更多 `create-page` 的用法，请查看 [create-wxapp-page](https://github.com/cantonjs/create-wxapp-page)）
+* `pnpm start` 启动 `webpack` 开发微信小程序项目，监听文件变化自动重新编译（输出到 `dist/`）
+* `pnpm build` 编译 `production` 代码到 `release/`
+* `pnpm analyze` 生产构建并打开包体积分析（会常驻一个服务，按 Ctrl+C 结束）
+* `pnpm lint` / `pnpm lint:build` eslint、stylelint 校验
+* `pnpm test` 构建冒烟测试：校验小程序产物是否齐全
+* `pnpm prettier` 格式化 `src` 下的代码
+* `pnpm create-page` 快速创建小程序页面（用法见 [create-wxapp-page](https://github.com/cantonjs/create-wxapp-page)）
 
 ## 文件复制
 
@@ -81,11 +107,11 @@ wxapp-redux 微信小程序和redux绑定库，类react-redux。同npm包名，�
 }
 ```
 
-通过执行 `yarn start` 或 `yarn build`，`src/images` 和 `src/icons` 目录会自动复制到 `dist/wechat/images` 和 `dist/wechat/icons` 目录（支付宝小程序同理）。
+执行 `pnpm start` 或 `pnpm build` 时，`src/images` 和 `src/icons` 目录会自动复制到输出目录下的 `images` 和 `icons`。
 
 ## 更新日志
 
-
+见 [CHANGELOG.md](./CHANGELOG.md)。
 
 ## 相关项目
 

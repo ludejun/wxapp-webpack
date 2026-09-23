@@ -1,7 +1,7 @@
 {
   "name": "wxapp-webpack-wedux",
   "version": "1.0.0",
-  "description": "mini program dev boilerplate, supports wechat and alipay",
+  "description": "WeChat Mini Program scaffold built on webpack, scss, redux, vedux and redux-thunk.",
   "private": true,
   "scripts": {
     "start": "webpack --watch",
@@ -19,13 +19,14 @@
     "create-component": "create-wxapp-page --type=component --dir=src --indent=tab --style=scss",
     "test": "jest",
     "format": "npm run prettier && npm run lint -- --fix",
-    "precommit": "npm run format"
+    "precommit": "npm run format",
+    "analyze": "cross-env ANALYZE=true NODE_ENV=production webpack --env.min"
   },
   "main": "dist/app.js",
   "author": "ludejun@live.cn",
   "license": "MIT",
   "engines": {
-    "node": ">=4"
+    "node": ">=18"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",
@@ -54,11 +55,11 @@
     "glob": "^7.1.2",
     "husky": "^2.3.0",
     "jest": "21.x",
-    "node-sass": "^4.9.3",
     "npm-run-all": "^4.1.1",
     "prettier-eslint-cli": "^4.7.0",
     "rimraf": "^2.6.1",
-    "sass-loader": "^6.0.6",
+    "sass": "^1.105.0",
+    "sass-loader": "^7.3.1",
     "stylelint": "^8.0.0",
     "stylelint-config-standard": "^17.0.0",
     "stylelint-scss": "^1.4.4",
@@ -76,10 +77,8 @@
     "vedux": "^0.1.6"
   },
   "jest": {
-    "modulePathIgnorePatterns": [
-      "node_modules",
-      "lib"
-    ]
+    "testEnvironment": "node",
+    "testTimeout": 120000
   },
   "directories": {
     "test": "test"
@@ -94,6 +93,6 @@
     "redux",
     "vedux"
   ],
-  "copyWebpack": [
-  ]
+  "copyWebpack": [],
+  "packageManager": "pnpm@10.19.0"
 }
