@@ -12,9 +12,12 @@ import CopyPlugin from 'copy-webpack-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import pkg from './package.json';
 
-const { NODE_ENV, LINT } = process.env;
+const { NODE_ENV, LINT, ANALYZE } = process.env;
 const isDev = NODE_ENV !== 'production';
 const shouldLint = !!LINT && LINT !== 'false';
+// The analyzer starts a long-lived server, so a build that always enabled it
+// never exited. Opt in with ANALYZE=true, the same way linting opts in.
+const shouldAnalyze = !!ANALYZE && ANALYZE !== 'false';
 const srcDir = resolve('src');
 
 const copyPatterns = []
@@ -81,6 +84,10 @@ export default (env = {}) => {
 						{
 							loader: 'sass-loader',
 							options: {
+								// node-sass is deprecated and its native binding no
+								// longer builds on current Node; Dart Sass is the
+								// supported implementation.
+								implementation: require('sass'),
 								includePaths: [resolve('src', 'styles'), srcDir],
 							},
 						},
@@ -122,7 +129,7 @@ export default (env = {}) => {
 			shouldLint && new StylelintPlugin(),
 			min && new MinifyPlugin(),
 			new CopyPlugin(copyPatterns, { context: srcDir }),
-			new BundleAnalyzerPlugin({analyzerPort: 7001})
+			shouldAnalyze && new BundleAnalyzerPlugin({ analyzerPort: 7001 }),
 		].filter(Boolean),
 		devtool: isDev ? 'inline-source-map' : false,
 		resolve: {

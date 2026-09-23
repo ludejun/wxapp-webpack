@@ -1,17 +1,23 @@
 import { resolve } from 'path';
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 import rimraf from 'rimraf';
 import glob from 'glob';
 
+// The dev build writes to dist/ (the production build writes to release/).
+// An older, multi-platform version of this scaffold nested the output under
+// dist/wechat/, which is why this test used to look there and always failed.
 const inDist = (...args) => resolve('dist', ...args);
-const exist = (...paths) => !!glob.sync(inDist('wechat', ...paths))[0];
+const exist = (...paths) => !!glob.sync(inDist(...paths))[0];
 const clear = () => rimraf.sync(inDist());
 
 beforeEach(clear);
 afterEach(clear);
 
-test('development', () => {
-  console.log(execSync('yarn webpack').toString());
+test('the development build emits every mini-program file', () => {
+  // Call the local webpack directly rather than going through a package
+  // manager, so the test does not depend on which one is installed.
+  execFileSync(resolve('node_modules', '.bin', 'webpack'), { stdio: 'pipe' });
+
   expect(exist('app.js')).toBe(true);
   expect(exist('app.json')).toBe(true);
   expect(exist('app.wxss')).toBe(true);
