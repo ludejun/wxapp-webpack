@@ -26,15 +26,5 @@
 
 ### Added
 
-- `README_EN.md` alongside the Chinese `README.md`.
+- `README_CN.md` alongside the English `README.md`.
 - This changelog.
-
-### Not changed, deliberately
-
-The webpack 3 toolchain stays as it is.
-[`wxapp-webpack-plugin`](https://www.npmjs.com/package/wxapp-webpack-plugin) —
-the plugin this scaffold is built around — stopped at 0.19.0 (2022) with a peer
-dependency of `webpack ^2 || ^3`, and has no webpack 4/5 successor. Upgrading
-webpack would mean rewriting the packaging pipeline around a different plugin,
-which is a rewrite rather than maintenance. Everything above was fixed within
-that constraint, and the project builds and runs on Node 22.
